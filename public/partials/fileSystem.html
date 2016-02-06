@@ -1,5 +1,38 @@
 <div>
-   <h2>this is file sec1</h2>
-    <h2>this is file sec1</h2>
-    <h2>this is file sec1</h2>
+    <div class="list-group">
+        <!--<li  class="list-group-item" data-ng-repeat="file in fileList" data-ng-class="{'active' : selectFile.item == $index}" data-ng-click="selectFile.item = $index;">-->
+            <!--<p data-ng-class="{'selected' : selectFile.item == $index}" href= {{}}>-->
+                <!--<span class="badge" ng-if= "file.isDir == 'true'">文件夹</span>-->
+                <!--{{file.name}}-->
+            <!--</p>-->
+        <!--</li>-->
+        <div class="panel panel-warning">
+
+            <div class="panel-heading">
+                <div class="row">
+                <div class="col-xs-12 col-sm-6 col-lg-8"><h3 class="panel-title"><h4>Current Path:&nbsp;{{currRoot + "/" + currPath }}</h4></h3></div>
+                <div class="col-xs-6 col-lg-4" style="padding-left:25%;"><button type="button" class="btn btn-success" ng-click="listDirectory(lastPath)">Back</button></div>
+                    </div>
+            </div>
+
+        </div>
+        <li  class="list-group-item" data-ng-repeat="file in fileList" data-ng-class="{'active' : selectFile.item == $index}" data-ng-click="selectFile.item = $index; openPath(file.name, file.isDir)">
+            <p data-ng-class="{'selected' : selectFile.item == $index}" href= {{}}>
+
+                {{file.name}} &nbsp;&nbsp;&nbsp;
+                <span class="badge" ng-if= "file.isDir == 'true'">文件夹</span>
+            </p>
+        </li>
+
+    </div>
+    <!--<ul class="list-group">-->
+        <!--<li class="list-group-item">-->
+            <!--<span class="badge">文件夹</span>-->
+            <!--Cras justo odio-->
+        <!--</li>-->
+        <!--<li class="list-group-item">-->
+            <!--<span class="badge">文件夹</span>-->
+            <!--Cras justo odio-->
+        <!--</li>-->
+    <!--</ul>-->
 </div>

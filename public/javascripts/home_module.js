@@ -3,8 +3,40 @@
  */
 var homeApp = angular.module('homeApp',['ngRoute']);
 
-homeApp.controller('fileController', function($scope, $http){
+homeApp.controller('fileController', function($scope, $http, $window){
+    $scope.currRoot = '/var';
+    $scope.currPath = '';
+    $scope.lastPath = '';
+    $scope.selectFile = {item: 0};
 
+    $scope.listDirectory = function(path){
+        $http({
+            method: 'GET',
+            url: '/api/listDir/' + path,
+            data: $.param(path),
+            processData: false,
+            responseType: "json",
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).success(function(data) {
+            console.log(data);
+            $scope.fileList = data;
+            $scope.lastPath = $scope.currPath;
+            $scope.currPath = path;
+        });
+
+    };
+
+    $scope.openPath = function(name, isDir){
+        if(isDir == 'true'){
+            $scope.listDirectory(name);
+        }else{
+            console.log('try open file');
+            $window.location.href = '/static/name';
+        }
+    };
+    $scope.listDirectory($scope.currPath);
 });
 
 
@@ -12,20 +44,12 @@ homeApp.controller('videoController', function($scope, $http){
 
 });
 
-//homeApp.controller('navController', function($scope, $location){
-//    $scope.menus = [
-//        {
-//            lable:'Video',
-//            path:'/video'
-//        },
-//        {
-//            lable:'File',
-//            path:'/'
-//        }
-//    ];
-//    $scope.navObject = {item: 0};
-//
-//});
+homeApp.controller('navController', function($scope, $location){
+    $scope.isActive = function (viewLocation) {
+        return viewLocation === $location.path();
+    };
+
+});
 
 homeApp.config(function($routeProvider){
     $routeProvider

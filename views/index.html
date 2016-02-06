@@ -49,8 +49,11 @@
             </button>
             <a class="navbar-brand" href="#">Home System</a>
         </div>
-        <div class="navbar-collapse collapse" >//ng-controller="navController"
+        <div class="navbar-collapse collapse" ng-controller="navController">
             <ul class="nav navbar-nav">
+                <li ng-class="{ active: isActive('/')}"><a href="#/">File</a></li>
+                <li ng-class="{ active: isActive('/video')}"><a href="#/video">Video</a></li>
+                <!--<li ng-class="{ active: isActive('/cats')}"><a href="/cats">Cats</a></li>-->
                 <!--<li data-ng-repeat="menu in menus" data-ng-class="{'active' : navObject.item == $index}" data-ng-click="navObject.item = $index;"><a href= {{menu.path}}>{{menu.lable}}</a></li>-->
                 <!--<li class="active"><a href="#">Home</a></li>-->
                 <!--<li><a href="#about">About</a></li>-->
