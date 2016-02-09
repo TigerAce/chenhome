@@ -4,6 +4,10 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
+var multiparty = require('connect-multiparty');
+
+var uploadPath = '/Users/chen';
+var mm = multiparty({ uploadDir: uploadPath});
 
 router.get('/listDir/:path?', function(req, res) {
 
@@ -57,6 +61,19 @@ router.get('/listDir/:path?', function(req, res) {
     });
 
 
+});
+
+
+router.post('/upload', mm, function(req, res) {
+    //console.log('get upload');
+    var file = req.files.file;
+
+    console.log(req.files);
+
+    console.log(file.name);
+    console.log(req.files.file.path);
+    fs.renameSync(req.files.file.path,uploadPath + '/' + file.name);
+    res.status(200).send('OK');
 });
 
 module.exports = router;

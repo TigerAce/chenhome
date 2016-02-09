@@ -1,3 +1,22 @@
 <div>
-    aaaaaa
+    <div class="list-group">
+
+        <div class="panel panel-warning">
+
+            <div class="panel-heading">
+               <h3 class="panel-title"><h4>Movie</h4></h3>
+
+            </div>
+
+        </div>
+        <li  class="list-group-item" data-ng-repeat="file in fileList" data-ng-class="{'active' : selectFile.item == $index}" data-ng-click="selectFile.item = $index; openPath(file.name, file.isDir)">
+            <p data-ng-class="{'selected' : selectFile.item == $index}" href= {{}}>
+
+                {{file.name}} &nbsp;&nbsp;&nbsp;
+                <span class="badge" ng-if= "file.isDir == 'true'">文件夹</span>
+            </p>
+        </li>
+
+    </div>
+
 </div>
